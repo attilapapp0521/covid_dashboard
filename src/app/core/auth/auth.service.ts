@@ -5,12 +5,8 @@ import { Observable, from, of, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent, ModalData } from '../../shared/ui/limited-exceeded-modal/modal.component';
+import { User } from '../../features/auth-pages/model/User';
 
-interface User {
-  email: string;
-  passwordHash: string;
-  token: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -104,6 +100,8 @@ export class AuthService {
           email,
           passwordHash,
           token: this.generateToken(),
+          username: name,
+          id: crypto.randomUUID(),
         };
 
         this.users = [...this.users, newUser];
