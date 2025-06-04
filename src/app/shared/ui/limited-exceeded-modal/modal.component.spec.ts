@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LimitedExceededModalComponent } from './limited-exceeded-modal.component';
+import { LimitedExceededModalComponent } from './modal.component';
 
 describe('LimitedExceededModalComponent', () => {
   let component: LimitedExceededModalComponent;

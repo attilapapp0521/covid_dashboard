@@ -1,10 +1,10 @@
 // auth.service.ts
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, from, of, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { LimitExceededModalComponent } from '../../shared/ui/limited-exceeded-modal/limited-exceeded-modal.component';
+import { ModalComponent, ModalData } from '../../shared/ui/limited-exceeded-modal/modal.component';
 
 interface User {
   email: string;
@@ -66,9 +66,23 @@ export class AuthService {
   }
 
   private showLimitModal(): void {
-    this.dialog.open(LimitExceededModalComponent, {
+    const config: ModalData = {
+      title: 'Elérte a keresések maximális számát',
+      content: 'Maximum 3 keresés engedélyezett! Regisztráció szükséges a további használathoz!',
+      confirmText: 'Regisztráció',
+      cancelText: 'Mégse',
+    };
+
+    const dialogRef = this.dialog.open(ModalComponent, {
       width: '400px',
       disableClose: true,
+      data: config,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.router.navigate(['/registration']);
+      }
     });
   }
 

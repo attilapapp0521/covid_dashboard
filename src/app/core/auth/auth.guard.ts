@@ -6,8 +6,7 @@ export const authGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.getAttempts() >= 3 || !authService.isLoggedIn) {
-    authService.handleSearchAttempt();
+  if (authService.getAttempts() > 3 && !authService.isLoggedIn) {
     return router.navigate(['/login']);
   }
   return true;

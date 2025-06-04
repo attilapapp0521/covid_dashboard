@@ -12,6 +12,7 @@ import {
   LayoutType,
 } from '../../../shared/ui/universal-form/universal-form-interfaces';
 import { COUNTRIES } from '../model/countries.model';
+import { MatButton } from '@angular/material/button';
 
 // Új interfészek a típusosság érdekében
 
@@ -19,7 +20,7 @@ import { COUNTRIES } from '../model/countries.model';
   selector: 'app-comparison',
   templateUrl: './comparison.component.html',
   styleUrls: ['./comparison.component.scss'],
-  imports: [UniversalFormComponent],
+  imports: [UniversalFormComponent, MatButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComparisonComponent {

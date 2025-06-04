@@ -1,4 +1,4 @@
-<mat-tab-group animationDuration="200ms">
+<mat-tab-group animationDuration="200ms" (selectedIndexChange)="onTabChange($event)">
   <mat-tab label="Áttekintés">
     <div class="filter-container">
       <app-country-select (valueChange)="handleCountrySelection($event)"></app-country-select>

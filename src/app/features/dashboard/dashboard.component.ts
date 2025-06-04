@@ -11,13 +11,11 @@ import {
   CountrySelectComponent,
   SelectedCountry,
 } from '../../shared/ui/country-selector/country-select.component';
-import {
-  ChartData,
-  ChartWrapperComponent,
-  SeriesData,
-} from '../../shared/ui/chart-wrapper/chart-wrapper.component';
+import { ChartWrapperComponent } from '../../shared/ui/chart-wrapper/chart-wrapper.component';
 import { ComparisonComponent } from './comparison/comparison.component';
 import { AuthService } from '../../core/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent, ModalData } from '../../shared/ui/limited-exceeded-modal/modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,11 +39,11 @@ export class DashboardComponent {
 
   activeKpiPage = 0; // 0: első 3, 1: második 3
 
-
   constructor(
     private readonly covidService: CovdDataService,
     private readonly destroyRef: DestroyRef,
     private readonly authService: AuthService,
+    private dialog: MatDialog,
   ) {}
 
   handleCountrySelection(selectedCountries: SelectedCountry[]) {
@@ -57,7 +55,6 @@ export class DashboardComponent {
   }
 
   getCasesAndVaccines() {
-    this.authService.handleSearchAttempt();
     if (this.selectedCountryId) {
       forkJoin({
         cases: this.covidService.getCases(this.selectedCountryId),
@@ -69,13 +66,10 @@ export class DashboardComponent {
             this.vaccinesData.set(vaccinations);
           }),
           catchError((err) => throwError(() => new Error(err))),
-          finalize(() => console.log('művelet befejezve')),
+          finalize(() => this.authService.handleSearchAttempt()),
           takeUntilDestroyed(this.destroyRef),
         )
-        .subscribe(() => {
-          console.log(this.casesData());
-          console.log(this.vaccinesData());
-        });
+        .subscribe();
     }
   }
 
@@ -153,4 +147,20 @@ export class DashboardComponent {
   ]);
 
   protected readonly signal = signal;
+
+  onTabChange(index: number) {
+    if (index === 1) {
+      const config: ModalData = {
+        title: 'Tab fejlesztés alatt',
+        content: 'Ez a funkció jelenleg fejlesztés alatt áll.',
+        confirmText: 'Ok',
+      };
+
+      this.dialog.open(ModalComponent, {
+        width: '400px',
+        disableClose: true,
+        data: config,
+      });
+    }
+  }
 }
