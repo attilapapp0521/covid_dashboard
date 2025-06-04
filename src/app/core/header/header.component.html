@@ -28,14 +28,14 @@
 </mat-toolbar>
 
 <mat-menu #userMenu="matMenu">
-  <button mat-menu-item routerLink="/login">
+  <button mat-menu-item (click)="logout()">
     <mat-icon>logout</mat-icon>
     Kijelentkezés
   </button>
 </mat-menu>
 
 <mat-menu #authMenu="matMenu">
-  <button mat-menu-item routerLink="/login">
+  <button mat-menu-item >
     <mat-icon>login</mat-icon>
     Bejelentkezés
   </button>

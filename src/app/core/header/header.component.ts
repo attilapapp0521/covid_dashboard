@@ -27,4 +27,8 @@ export class HeaderComponent {
   get username() {
     return this.authService.currentUser()?.email ?? 'Felhasználó';
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

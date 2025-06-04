@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   get isLoggedIn() {
-    return this._currentUser() !== undefined;
+    return !!this._currentUser();
   }
 
   private get users(): User[] {
