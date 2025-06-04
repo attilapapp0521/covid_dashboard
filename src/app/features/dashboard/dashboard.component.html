@@ -1,0 +1,88 @@
+<mat-tab-group animationDuration="200ms">
+  <mat-tab label="Áttekintés">
+    <div class="filter-container">
+      <app-country-select (valueChange)="handleCountrySelection($event)"></app-country-select>
+
+      <button mat-flat-button (click)="getCasesAndVaccines()">Keresés</button>
+    </div>
+    <div class="dashboard-container">
+      <div class="kpi-container">
+
+        <app-kpi-card
+          [title]="'Fertőzöttek'"
+          [subtitle]="'100.000 lakosra vetítve'"
+          [unit]="'eset/100k'"
+          [value]="ferozesiArany"
+          [icon]="'coronavirus'"
+          [type]="'health'"
+        />
+
+        <app-kpi-card
+          [title]="'Halálozási arány'"
+          [subtitle]="'Fertőzöttekhez viszonyítva'"
+          [unit]="'%'"
+          [value]="halalozasiArany"
+          [icon]="'sentiment_very_dissatisfied'"
+          [type]="'death'"
+        />
+
+        <app-kpi-card
+          [title]="'Oltottsági szint'"
+          [subtitle]="'Népességhez viszonyítva'"
+          [unit]="'%'"
+          [value]="oltotsagiArany"
+          [icon]="'vaccines'"
+          [type]="'vaccine'"
+        />
+
+        <app-kpi-card
+          [title]="'Adag/Népesség'"
+          [subtitle]="'Átlagos oltási arány'"
+          [unit]="'adag/fő'"
+          [value]="adagPerNepesseg"
+          [icon]="'medical_services'"
+          [type]="'vaccine'"
+        />
+
+        <app-kpi-card
+          [title]="'Halálozások'"
+          [subtitle]="'Abszolút számban'"
+          [unit]="'fő'"
+          [value]="signal(casesData()?.deaths ?? 0)"
+          [icon]="'personal_injury'"
+          [type]="'death'"
+        />
+
+        <app-kpi-card
+          [title]="'Oltási adagok'"
+          [subtitle]="'Összes beadott adag'"
+          [unit]="'adag'"
+          [value]="signal(vaccinesData()?.administered ?? 0)"
+          [icon]="'local_hospital'"
+          [type]="'vaccine'"
+        />
+      </div>
+      <div class="chart-container">
+        <app-chart-wrapper
+          type="pie"
+          [data]="pieChartData()"
+          title="Oltottsági Arányok"
+        ></app-chart-wrapper>
+
+        <app-chart-wrapper
+          type="column"
+          [data]="columnChartData()"
+          title="Fertőzések vs Halálozások"
+        ></app-chart-wrapper>
+
+        <!--                <app-chart-->
+        <!--                  type="grouped-column"-->
+        <!--                  [data]="groupedColumnData"-->
+        <!--                  [categories]="categories"-->
+        <!--                  title="Adagok Összehasonlítása"-->
+        <!--                ></app-chart>-->
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Összehasonlítás"><app-comparison /></mat-tab>
+</mat-tab-group>

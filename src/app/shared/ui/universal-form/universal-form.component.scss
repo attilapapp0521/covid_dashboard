@@ -1,0 +1,269 @@
+.universal-form {
+  background: #f7f9fb;
+  color: #222;
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 32px 24px 24px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(60, 60, 80, 0.08);
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .form-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+    }
+    .form-description {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  }
+
+  .form-section-accordion {
+    margin-bottom: 24px;
+    .form-section-panel {
+      border-radius: 12px;
+      box-shadow: 0 2px 12px 0 rgba(60, 60, 80, 0.09);
+      margin-bottom: 16px;
+      background: #fff;
+      border: 1px solid #e3e7ef;
+
+      .mat-expansion-panel-header {
+        border-radius: 12px 12px 0 0;
+        font-weight: 600;
+        background: #f5f7fa;
+        color: #1976d2;
+
+        .section-title {
+          font-size: 1.18rem;
+          font-weight: 700;
+          margin-left: 8px;
+          color: #1976d2;
+        }
+        .section-icon {
+          color: #1976d2;
+          font-size: 22px;
+        }
+        .section-description {
+          color: #888;
+          font-size: 0.98rem;
+          margin-left: 12px;
+        }
+      }
+      .form-fields {
+        padding: 18px 12px 8px 12px;
+      }
+    }
+  }
+
+  .form-field, .standalone-field {
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px 0 rgba(60, 60, 80, 0.07);
+    border: 1px solid #e3e7ef;
+    color: #23272f;
+    padding: 16px 12px 8px 12px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+
+    &:focus-within {
+      box-shadow: 0 2px 12px 0 rgba(25, 118, 210, 0.14);
+      border-color: #1976d2;
+    }
+
+    .mat-form-field {
+      width: 100%;
+      background: transparent;
+    }
+    .mat-form-field-label {
+      color: #1976d2 !important;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .mat-input-element {
+      color: #23272f;
+    }
+    .mat-select-arrow {
+      color: #1976d2;
+    }
+    .mat-option {
+      color: #23272f;
+    }
+    .mat-radio-button .mat-radio-label-content,
+    .mat-checkbox .mat-checkbox-label {
+      color: #23272f;
+      font-size: 1rem;
+    }
+    .mat-radio-inner-circle,
+    .mat-radio-outer-circle {
+      border-color: #1976d2;
+    }
+    .mat-radio-checked .mat-radio-inner-circle {
+      background-color: #1976d2;
+    }
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: #1976d2 !important;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+
+    button {
+      min-width: 140px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 8px;
+    }
+  }
+
+  .error-messages {
+    margin-top: 6px;
+    .error-message {
+      color: #d32f2f;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-left: 2px;
+    }
+  }
+}
+
+// Sötét mód
+:host-context(.dark-theme) {
+  .universal-form {
+    background: #23272f;
+    color: #f1f1f1;
+
+    .form-header .form-title {
+      color: #f1f1f1;
+    }
+
+    .form-section-accordion .form-section-panel {
+      background: #1e1e1e;
+      border: 1px solid #31343c;
+
+      .mat-expansion-panel-header {
+        background: #222a35;
+        color: #90caf9;
+
+        .section-title, .section-icon {
+          color: #90caf9;
+        }
+      }
+    }
+
+    .form-field, .standalone-field {
+      background: #23272f;
+      box-shadow: 0 1px 6px 0 rgba(0,0,0,0.25);
+      border: 1px solid #31343c;
+      color: #f1f1f1;
+
+      .mat-form-field-label {
+        color: #90caf9 !important;
+      }
+
+      .mat-input-element {
+        color: #f1f1f1;
+      }
+
+      .mat-select-arrow {
+        color: #90caf9;
+      }
+
+      .mat-option {
+        color: #f1f1f1;
+      }
+
+      .mat-radio-button .mat-radio-label-content,
+      .mat-checkbox .mat-checkbox-label {
+        color: #f1f1f1;
+      }
+
+      .mat-radio-inner-circle,
+      .mat-radio-outer-circle {
+        border-color: #90caf9;
+      }
+
+      .mat-radio-checked .mat-radio-inner-circle {
+        background-color: #90caf9;
+      }
+
+      .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+        background-color: #90caf9 !important;
+      }
+    }
+
+    .form-actions {
+      border-top: 1px solid #333;
+    }
+
+    .error-messages .error-message {
+      color: #ff8a80;
+    }
+  }
+}
+
+// Globális Material stílusok
+::ng-deep {
+  .mat-select-panel {
+    background: #fff !important;
+    color: #23272f !important;
+
+    .mat-option {
+      color: #23272f !important;
+
+      &.mat-selected {
+        background: #e3f2fd !important;
+        color: #1976d2 !important;
+      }
+    }
+  }
+
+  .dark-theme {
+    .mat-select-panel {
+      background: #23272f !important;
+      color: #f1f1f1 !important;
+
+      .mat-option {
+        color: #f1f1f1 !important;
+
+        &.mat-selected {
+          background: #0d47a1 !important;
+          color: #90caf9 !important;
+        }
+      }
+    }
+
+    .mat-radio-label-content,
+    .mat-checkbox-label {
+      color: #f1f1f1 !important;
+    }
+
+    .mat-radio-inner-circle,
+    .mat-radio-outer-circle {
+      border-color: #90caf9 !important;
+    }
+
+    .mat-radio-checked .mat-radio-inner-circle {
+      background-color: #90caf9 !important;
+    }
+
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: #90caf9 !important;
+    }
+  }
+
+}

@@ -1,0 +1,76 @@
+<form [formGroup]="formGroup()" (ngSubmit)="onSubmit()" class="universal-form">
+  @if (config.title || config.description) {
+    <div class="form-header">
+      @if (config.title) {
+        <h2 class="form-title">{{ config.title }}</h2>
+      }
+      @if (config.description) {
+        <p class="form-description">{{ config.description }}</p>
+      }
+    </div>
+  }
+
+  @for (item of config.items; track $index) {
+    @if (isSection(item)) {
+      <mat-accordion class="form-section-accordion" displayMode="flat">
+        <mat-expansion-panel
+          [expanded]="item.section.expanded"
+          [hideToggle]="isHideToggle"
+          class="form-section-panel"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              @if (item.section.icon) {
+                <mat-icon class="section-icon">{{ item.section.icon }}</mat-icon>
+              }
+              <span class="section-title">{{ item.section.title }}</span>
+            </mat-panel-title>
+            @if (item.section.description) {
+              <mat-panel-description>
+                <span class="section-description">{{ item.section.description }}</span>
+              </mat-panel-description>
+            }
+          </mat-expansion-panel-header>
+          <div class="form-fields" [ngClass]="item.section.layout || 'vertical'">
+            @for (field of item.section.fields; track field.key) {
+              @if (isFieldVisible(field)) {
+                <div class="form-field" [class.full-width]="field.fullWidth">
+                  <app-field-renderer [field]="field" [formGroup]="formGroup()" />
+                  @if (showErrors() && formGroup().get(field.key)?.errors) {
+                    <div class="error-messages">
+                      @for (error of getErrorMessages(field); track error) {
+                        <span class="mat-caption error-message">{{ error }}</span>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    } @else if (isField(item)) {
+      <div class="form-field standalone-field" [class.full-width]="item.field.fullWidth">
+        <app-field-renderer [field]="item.field" [formGroup]="formGroup()" />
+        @if (showErrors() && formGroup().get(item.field.key)?.errors) {
+          <div class="error-messages">
+            @for (error of getErrorMessages(item.field); track error) {
+              <span class="mat-caption error-message">{{ error }}</span>
+            }
+          </div>
+        }
+      </div>
+    }
+  }
+
+  <div class="form-actions">
+    @if (config.secondaryButtonLabel) {
+      <button mat-raised-button color="accent" type="button" (click)="onSecondaryButtonClick()">
+        {{ config.secondaryButtonLabel }}
+      </button>
+    }
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup().valid">
+      {{ config.submitLabel || 'Submit' }}
+    </button>
+  </div>
+</form>

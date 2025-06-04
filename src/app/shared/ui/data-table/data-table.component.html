@@ -1,0 +1,51 @@
+<div class="table-container mat-elevation-z8">
+  <!-- Opcionális szűrőmező -->
+  <!--
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Szűrés</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Írj be valamit...">
+  </mat-form-field>
+  -->
+
+  <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
+    <!-- Oszlop Definíciók -->
+    <ng-container *ngFor="let columnKey of displayedColumns" [matColumnDef]="columnKey">
+      <!--
+        A mat-sort-header direktíva az oszlop kulcsát (string) várja.
+        A [disabled] inputtal szabályozzuk, hogy az adott oszlop ténylegesen rendezhető-e.
+      -->
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        [disabled]="!isColumnSortable(columnKey)"
+      >
+        {{ getHeaderText(columnKey) }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element[columnKey] }}
+      </td>
+    </ng-container>
+
+    <!-- Fejléc Sor Definíció -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Adat Sor Definíció -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Üzenet, ha nincs adat -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+        Nincsenek megjeleníthető adatok.
+      </td>
+    </tr>
+  </table>
+
+  <!-- Lapozó -->
+  <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="defaultPageSize"
+    showFirstLastButtons
+    aria-label="Válassz oldalt az adatokhoz"
+  >
+  </mat-paginator>
+</div>

@@ -1,0 +1,10 @@
+.comparison-container {
+  padding: 20px;
+}
+
+.charts-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  margin-top: 20px;
+}

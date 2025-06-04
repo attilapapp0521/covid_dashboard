@@ -1,0 +1,44 @@
+<mat-form-field appearance="outline" class="w-full">
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-select
+    [multiple]="mode === 'multi'"
+    [placeholder]="placeholder"
+    (valueChange)="onSelectionChange($event)"
+  >
+    <mat-option class="p-2">
+      <input
+        matInput
+        placeholder="Keresés..."
+        [value]="searchQuery()"
+        (input)="onSearchChange($any($event.target).value)"
+        class="w-full"
+        #searchInput
+      />
+    </mat-option>
+
+    <mat-option
+      *ngFor="let country of filteredCountries()"
+      [value]="country.id"
+      [disabled]="isOptionDisabled(country)"
+    >
+      <div class="flex items-center gap-2">
+        <span class="text-xl">{{ country.flagEmoji }}</span>
+        <span class="font-medium">{{ country.name }}</span>
+        <span class="text-gray-500">({{ country.code }})</span>
+      </div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-chip-set *ngIf="mode === 'multi' && value.length" class="selected-chips">
+  <mat-chip
+    *ngFor="let item of value"
+    [removable]="true"
+    (removed)="removeCountry(item.id)"
+    class="!bg-gray-100 dark:!bg-gray-700"
+  >
+    {{ item.name }}
+    <mat-icon matChipRemove class="!text-sm">cancel</mat-icon>
+  </mat-chip>
+</mat-chip-set>

@@ -1,0 +1,48 @@
+.country-select {
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto;
+  display: block;
+
+  ::ng-deep .mat-select-trigger {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+}
+
+.flag {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.code {
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: auto;
+}
+
+.selected-chips {
+  margin-top: 12px;
+
+  .mat-mdc-chip {
+    margin: 4px;
+  }
+}
+
+mat-icon {
+  &.mat-icon {
+    overflow: visible;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .country-select {
+    background-color: #1e1e1e;
+    color: white;
+  }
+}

@@ -1,0 +1,8 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <app-universal-form
+    [config]="loginFormConfig"
+    [isHideToggle]="true"
+    (formSubmit)="onLoginSubmit($event)"
+  ></app-universal-form>
+</div>

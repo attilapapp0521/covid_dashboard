@@ -1,0 +1,26 @@
+.dashboard-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+
+.kpi-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+
+.filter-container{
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.chart-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+

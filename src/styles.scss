@@ -1,4 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --toolbar-bg: var(--mat-primary);
+  --toolbar-text: var(--mat-on-primary);
+  --chart-primary: #2196F3;
+  --chart-secondary: #4CAF50;
+  --chart-warning: #FF9800;
+
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette
+    )
+  ));
+}
+
+.dark-theme {
+  //--toolbar-bg: var(--mat-primary);
+  //--toolbar-text: var(--mat-on-primary);
+  --chart-primary: #64B5F6;
+  --chart-secondary: #81C784;
+  --chart-warning: #FFB74D;
+
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette
+    )
+  ));
+}
+
+  //// Sötét téma media query-val
+  //@media (prefers-color-scheme: dark) {
+  //  @include mat.theme((
+  //    color: (
+  //      theme-type: dark,
+  //      primary: mat.$violet-palette,
+  //      tertiary: mat.$azure-palette
+  //    ),
+  //    typography: Roboto,
+  //    density: 0
+  //  ));
+  //}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px !important; // Material Design spec alapján
+}
+
+body {
+  background-color: var(--mat-background);
+  transition: background-color 0.3s ease;
+}
+//.mat-select-panel {
+//  z-index: 2000 !important; /* Biztos, hogy overlay más elemek felett legyen */
+//}
+

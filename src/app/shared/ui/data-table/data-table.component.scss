@@ -1,0 +1,166 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.kpi-card {
+  height: 100%;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  // Típus specifikus színek
+  &--health {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  &--vaccine {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+  }
+
+  &--death {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+  }
+
+  &--recovery {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #333;
+  }
+
+  &--population {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    color: #333;
+  }
+
+  &--default {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+}
+
+.kpi-content {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kpi-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &--health { background: rgba(255, 255, 255, 0.2); }
+  &--vaccine { background: rgba(255, 255, 255, 0.2); }
+  &--death { background: rgba(255, 255, 255, 0.2); }
+  &--recovery { background: rgba(0, 0, 0, 0.1); }
+  &--population { background: rgba(0, 0, 0, 0.1); }
+  &--default { background: rgba(255, 255, 255, 0.2); }
+}
+
+.kpi-info {
+  flex: 1;
+}
+
+.kpi-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.25;
+  opacity: 0.9;
+}
+
+.kpi-subtitle {
+  font-size: 0.75rem;
+  margin: 0;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+.kpi-value-section {
+  margin-top: auto;
+}
+
+.kpi-value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.kpi-value {
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.kpi-unit {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+// Reszponzív design
+@media (max-width: 1200px) {
+  .kpi-value {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-content {
+    padding: 1rem;
+  }
+
+  .kpi-value {
+    font-size: 1.75rem;
+  }
+
+  .kpi-icon {
+    width: 40px;
+    height: 40px;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .kpi-header {
+    gap: 0.75rem;
+  }
+
+  .kpi-value {
+    font-size: 1.5rem;
+  }
+}

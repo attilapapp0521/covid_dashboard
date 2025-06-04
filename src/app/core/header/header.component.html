@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <div class="toolbar-container">
+    <!-- Logó rész -->
+    <div class="branding">
+      <mat-icon aria-hidden="false">coronavirus</mat-icon>
+      <span class="logo-text">COVID Adatközpont</span>
+    </div>
+
+    <div class="nav-items">
+      <!-- Téma váltó -->
+      <button mat-icon-button (click)="themeService.toggleTheme()">
+        <mat-icon>{{ themeService.isDarkTheme ? 'dark_mode' : 'light_mode' }}</mat-icon>
+      </button>
+
+      @if (isLoggedIn) {
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+          <span class="username">{{ username }}</span>
+        </button>
+      } @else {
+        <button mat-raised-button color="accent" [matMenuTriggerFor]="authMenu">
+          <mat-icon>login</mat-icon>
+          Belépés
+        </button>
+      }
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    Kijelentkezés
+  </button>
+</mat-menu>
+
+<mat-menu #authMenu="matMenu">
+  <button mat-menu-item routerLink="/login">
+    <mat-icon>login</mat-icon>
+    Bejelentkezés
+  </button>
+  <button mat-menu-item routerLink="/registration">
+    <mat-icon>person_add</mat-icon>
+    Regisztráció
+  </button>
+</mat-menu>

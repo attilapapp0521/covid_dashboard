@@ -1,0 +1,104 @@
+<!-- field-renderer.component.html -->
+<div [formGroup]="formGroup">
+  @switch (field.type) {
+    @case (FieldType.TEXT) {
+      <mat-form-field appearance="outline">
+        <mat-label>{{ field.label }}</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          [attr.aria-label]="field.label || field.key"
+        />
+      </mat-form-field>
+    }
+    @case (FieldType.EMAIL) {
+      <mat-form-field appearance="outline">
+        <mat-label>{{ field.label }}</mat-label>
+        <input
+          matInput
+          type="email"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          [attr.aria-label]="field.label || field.key"
+        />
+      </mat-form-field>
+    }
+    @case (FieldType.PASSWORD) {
+      <mat-form-field appearance="outline">
+        <mat-label>{{ field.label }}</mat-label>
+        <input
+          matInput
+          [type]="'password'"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          [attr.aria-label]="field.label || field.key"
+        />
+      </mat-form-field>
+    }
+    @case (FieldType.NUMBER) {
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="number"
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          [attr.aria-label]="field.label || field.key"
+        />
+      </mat-form-field>
+    }
+    @case (FieldType.SELECT) {
+      <mat-form-field appearance="outline">
+        <mat-label>{{ field.placeholder }}</mat-label>
+        <mat-select [formControlName]="field.key">
+          @for (option of field.options; track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+    @case (FieldType.MULTISELECT) {
+      <mat-form-field appearance="outline">
+        <mat-label>{{ field.placeholder }}</mat-label>
+        <mat-select [formControlName]="field.key" multiple>
+          @for (option of field.options; track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+    @case (FieldType.CHECKBOX) {
+      <mat-checkbox [formControlName]="field.key">{{
+        field.label
+      }}</mat-checkbox>
+    }
+    @case (FieldType.RADIO) {
+      <mat-radio-group [formControlName]="field.key">
+        @for (option of field.options; track option.value) {
+          <mat-radio-button [value]="option.value">{{ option.label }}</mat-radio-button>
+        }
+      </mat-radio-group>
+    }
+    @case (FieldType.DATE) {
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker" [formControlName]="field.key" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    }
+    @case (FieldType.SWITCH) {
+      <mat-slide-toggle [formControlName]="field.key">{{ field.label }}</mat-slide-toggle>
+    }
+    @case (FieldType.TEXTAREA) {
+      <mat-form-field appearance="outline" class="full-width">
+        <textarea
+          matInput
+          [formControlName]="field.key"
+          [placeholder]="field.placeholder || ''"
+          [rows]="field.rows || 3"
+        ></textarea>
+      </mat-form-field>
+    }
+  }
+</div>

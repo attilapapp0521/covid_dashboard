@@ -1,0 +1,84 @@
+// chart-wrapper.component.scss
+@use 'sass:color';
+
+.chart-container {
+  padding: 16px;
+  background: #f6f8fa;
+  border-radius: 8px;
+  margin: 16px;
+  transition:
+    background 0.3s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+
+  .mat-tooltip {
+    padding: 8px;
+    background: #fff;
+    color: #2d3748;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 0.98rem;
+    transition: all 0.3s;
+
+    .tooltip-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+
+      .color-box {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  // Sötét mód
+  :host-context(.dark-theme) & {
+    background: #262b32;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+
+    .mat-tooltip {
+      background: #353a45;
+      color: #f7fafc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+  }
+}
+
+// Highcharts specific
+:host ::ng-deep {
+  .highcharts-background {
+    fill: transparent !important;
+  }
+
+  .highcharts-axis-labels text {
+    font-size: 12px;
+    font-weight: 500;
+    fill: #2d3748;
+  }
+
+  .highcharts-yaxis-title {
+    font-size: 14px;
+    fill: #2d3748;
+  }
+
+  // Sötét mód
+  :host-context(.dark-theme) & {
+    .highcharts-axis-labels text {
+      fill: #b0b8c1 !important;
+    }
+
+    .highcharts-yaxis-title {
+      fill: #e0e3e6 !important;
+    }
+
+    .highcharts-legend-item text {
+      fill: #f7fafc !important;
+    }
+
+    .highcharts-grid-line {
+      stroke: #353a45;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<div class="comparison-container">
+  <button mat-raised-button color="primary" (click)="showForm.set(true)">Új összehasonlítás</button>
+
+  @if (showForm()) {
+    <app-universal-form
+      [config]="formConfig"
+      (formSubmit)="onFormSubmit($event)"
+      (secondaryAction)="showForm.set(false)"
+    ></app-universal-form>
+  }
+
+<!--  <div class="charts-grid">-->
+<!--    @for (chart of activeCharts(); track chart.id) {-->
+<!--      <app-chart-wrapper-->
+<!--        type="pie"-->
+<!--        [data]="pieChartData()"-->
+<!--        title="Oltottsági Arányok"-->
+<!--      ></app-chart-wrapper>-->
+<!--    }-->
+<!--  </div>-->
+</div>

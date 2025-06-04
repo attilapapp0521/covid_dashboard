@@ -1,0 +1,20 @@
+<mat-card [class]="'kpi-card kpi-card--' + type">
+  <mat-card-content class="card-content">
+    <div class="header-section">
+      <mat-icon class="card-icon">{{ icon }}</mat-icon>
+      <div class="text-container">
+        <h3 class="card-title">{{ title }}</h3>
+        @if (subtitle) {
+          <p class="subtitle">{{ subtitle }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="value-section">
+      <div class="main-value">
+        {{ (value ? value() : 0) | formatNumber }}
+      </div>
+      <span class="unit">{{ unit }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
